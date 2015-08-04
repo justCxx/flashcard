@@ -28,17 +28,18 @@
 }
 
 .clearfix:after {
+  clear: both;
   content: ".";
   display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
   height: 0;
+  line-height: 0;
+  visibility: hidden;
 }
 
 html[xmlns].clearfix {
   display: block;
 }
+
 * html .clearfix {
   height: 1%;
 }
