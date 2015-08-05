@@ -1,13 +1,13 @@
-<%= simple_form_for item do |f| %>
+<%= simple_form_for card do |f| %>
 
-  <% if item.errors.any? %>
+  <% if card.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(item.errors.count, "error") %> prohibited
+        <%= pluralize(card.errors.count, "error") %> prohibited
         this card from being saved:
       </h2>
       <ul>
-        <% item.errors.full_messages.each do |msg| %>
+        <% card.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>

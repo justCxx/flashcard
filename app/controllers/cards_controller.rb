@@ -1,6 +1,5 @@
 class CardsController < ApplicationController
-  before_action :find_card
-  skip_before_action :find_card, only: [:index, :new, :create]
+  before_action :find_card, except: [:index, :new, :create]
 
   def index
     @cards = Card.all
