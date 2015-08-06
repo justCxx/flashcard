@@ -18,10 +18,9 @@ rows.each do |row|
 
   card.each { |k, v| card[k] = v.strip.tr('"', "") }
 
-  if card[:original_text] != card [:translated_text]
-    Card.create! ({
-      original_text: card[:original_text],
-      translated_text: card[:translated_text]
-    })
-  end
+  card = Card.new ({
+    original_text: card[:original_text],
+    translated_text: card[:translated_text]
+  })
+  card.save
 end
