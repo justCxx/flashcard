@@ -1,6 +1,6 @@
-class WelcomeController < ApplicationController
+class ReviewsController < ApplicationController
   def index
-    show_card_for_review
+    @card = Card.cards_for_review.first
   end
 
   def review_card
@@ -15,12 +15,7 @@ class WelcomeController < ApplicationController
 
   protected
 
-  def show_card_for_review
-    @card = Card.cards_for_review.first
-  end
-
   def review_params
-    params.require(:card).permit(:id)
+    params.require(:review).permit(:id, :answer)
   end
-
 end

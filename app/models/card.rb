@@ -5,12 +5,13 @@ class Card < ActiveRecord::Base
   before_validation :set_review_date, if: :new_record?
 
   scope :cards_for_review, -> {
-    where("review_date < ?", Date.today).order("RANDOM()")
+    cards = where("review_date < ?", Date.today)
+    cards.offset(rand(cards.count))
   }
 
   def check_user_answer(answer)
     if words_equal?(answer, original_text)
-      update_attribute(:review_date, review_date + 3)
+      update_attributes(review_date: review_date + 3)
     else
       false
     end
@@ -32,7 +33,7 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def words_equal? (word1, word2)
+  def words_equal?(word1, word2)
     normalize(word1) == normalize(word2)
   end
 end
