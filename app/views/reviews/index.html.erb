@@ -8,4 +8,6 @@
 
 <% if @card %>
   <%= render 'form', card: @card %>
+<% else %>
+  <p> Нет карточек для просмотра. </p>
 <% end %>

@@ -1,6 +1,6 @@
-<%= form_tag review_card_path, method: :put do %>
+<%= simple_form_for :review, url: {action: :create}  do |f| %>
   <%= hidden_field_tag :card_id, card.id %>
   <%= card.translated_text %>
-  <%= text_field_tag :answer %>
-  <%= submit_tag "Проверить", class: "btn btn-primary" %>
+  <%= f.input :answer %>
+  <%= f.button :submit %>
 <% end %>

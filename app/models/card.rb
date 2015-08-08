@@ -4,10 +4,10 @@ class Card < ActiveRecord::Base
 
   before_validation :set_review_date, if: :new_record?
 
-  scope :for_review, -> {
+  def self.for_review
     cards = where("review_date < ?", Date.today)
     cards.offset(rand(cards.count))
-  }
+  end
 
   def check_user_answer(answer)
     if words_equal?(answer, original_text)

@@ -3,9 +3,9 @@ class ReviewsController < ApplicationController
     @card = Card.for_review.first
   end
 
-  def review_card
-    @card = Card.find(review_params[:card_id])
-    if @card.check_user_answer(params[:answer])
+  def create
+    @card = Card.find(params[:card_id])
+    if @card.check_user_answer(review_params[:answer])
       flash[:succes] = "Правильно!"
     else
       flash[:danger] = "Неправильно!"
@@ -16,6 +16,6 @@ class ReviewsController < ApplicationController
   protected
 
   def review_params
-    params.permit(:card_id, :answer)
+    params.require(:review).permit(:answer)
   end
 end
