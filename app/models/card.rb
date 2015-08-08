@@ -4,7 +4,7 @@ class Card < ActiveRecord::Base
 
   before_validation :set_review_date, if: :new_record?
 
-  scope :cards_for_review, -> {
+  scope :for_review, -> {
     cards = where("review_date < ?", Date.today)
     cards.offset(rand(cards.count))
   }

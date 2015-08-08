@@ -1,0 +1,6 @@
+<%= form_tag review_card_path, method: :put do %>
+  <%= hidden_field_tag :card_id, card.id %>
+  <%= card.translated_text %>
+  <%= text_field_tag :answer %>
+  <%= submit_tag "Проверить", class: "btn btn-primary" %>
+<% end %>
