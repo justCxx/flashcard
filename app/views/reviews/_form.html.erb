@@ -1,4 +1,4 @@
-<%= simple_form_for :review, url: {action: :create}  do |f| %>
+<%= simple_form_for :review, url: reviews_path  do |f| %>
   <%= hidden_field_tag :card_id, card.id %>
   <%= card.translated_text %>
   <%= f.input :answer %>

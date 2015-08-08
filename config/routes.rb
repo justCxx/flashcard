@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "reviews#index"
+  root "reviews#new"
   resources :cards
   resources :reviews
 end

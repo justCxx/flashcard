@@ -1,10 +1,10 @@
 class ReviewsController < ApplicationController
-  def index
+  def new
     @card = Card.for_review.first
   end
 
   def create
-    @card = Card.find(params[:card_id])
+    @card = Card.find(review_params[:card_id])
     if @card.check_user_answer(review_params[:answer])
       flash[:succes] = "Правильно!"
     else
@@ -16,6 +16,6 @@ class ReviewsController < ApplicationController
   protected
 
   def review_params
-    params.require(:review).permit(:answer)
+    params.permit(:card_id).merge params.require(:review).permit(:answer)
   end
 end
