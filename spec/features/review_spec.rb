@@ -4,7 +4,7 @@ describe "Card review" do
   let(:review) { FactoryGirl.create(:card, original_text: "Bueno") }
 
   context "when not available cards for review" do
-    it "no cards review card" do
+    it "no cards for review" do
       visit new_review_path
       expect(page).to have_content("Нет карточек для просмотра")
     end
@@ -13,8 +13,7 @@ describe "Card review" do
   context "when available cards for review" do
     before(:each) do
       card = review
-      card.review_date -= 5
-      card.save
+      card.update_attributes(review_date: card.review_date - 5)
       visit new_review_path
     end
 
