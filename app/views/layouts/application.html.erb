@@ -23,6 +23,14 @@
     </ul>
   </nav>
 
+  <p style="font-size: 22px;">
+    Первый в мире удобный менеджер флеш-карточек. Именно так.
+  </p>
+
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg %>
+  <% end -%>
+
   <%= yield %>
 
 </section>
