@@ -9,8 +9,8 @@ class Card < ActiveRecord::Base
     cards.offset(rand(cards.count))
   end
 
-  def check_user_answer(answer)
-    if words_equal?(answer, original_text)
+  def review(translated)
+    if words_equal?(translated, original_text)
       update_attributes(review_date: review_date + 3)
     else
       false
@@ -20,7 +20,7 @@ class Card < ActiveRecord::Base
   protected
 
   def normalize(str)
-    str.strip.mb_chars.downcase.to_s
+    str.squish.mb_chars.downcase.to_s
   end
 
   def set_review_date

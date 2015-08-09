@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
 
   def create
     @card = Card.find(review_params[:card_id])
-    if @card.check_user_answer(review_params[:answer])
+    if @card.review(review_params[:answer])
       flash[:succes] = "Правильно!"
     else
       flash[:danger] = "Неправильно!"
