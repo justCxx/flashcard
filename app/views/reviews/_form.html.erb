@@ -1,5 +1,5 @@
 <%= simple_form_for :review, url: reviews_path  do |f| %>
-  <%= hidden_field_tag :card_id, card.id %>
+  <%= f.hidden_field :card_id, value: card.id %>
   <%= card.translated_text %>
   <%= f.input :answer %>
   <%= f.button :submit %>

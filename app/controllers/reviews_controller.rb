@@ -16,6 +16,6 @@ class ReviewsController < ApplicationController
   protected
 
   def review_params
-    params.permit(:card_id).merge params.require(:review).permit(:answer)
+    params.require(:review).permit(:card_id, :answer)
   end
 end
