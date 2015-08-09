@@ -9,8 +9,8 @@ class Card < ActiveRecord::Base
     cards.offset(rand(cards.count))
   end
 
-  def review(variant)
-    if words_equal?(variant, original_text)
+  def review(translated)
+    if words_equal?(translated, original_text)
       update_attributes(review_date: review_date + 3)
     else
       false
