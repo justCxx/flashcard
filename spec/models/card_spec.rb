@@ -23,7 +23,7 @@ describe Card do
     expect(card.review_date).to eq Date.today + 3
   end
 
-  it "check the review date after review card" do
+  it "check the review date after card review" do
     review_date = card.review_date
     card.review("bueno")
     expect(card.review_date).to eq review_date + 3

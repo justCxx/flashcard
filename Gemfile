@@ -53,4 +53,10 @@ group :development, :test do
 
   # Library for fixtures replacement
   gem 'factory_girl_rails'
+
+  # Acceptance test framework for web applications
+  gem 'capybara'
+
+  # Strategies for cleaning databases
+  gem 'database_cleaner'
 end
