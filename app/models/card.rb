@@ -2,6 +2,7 @@ class Card < ActiveRecord::Base
   belongs_to :user
   validates :original_text, :translated_text, :review_date, presence: true
   validate :words_different
+  validates_associated :user
 
   before_validation :set_review_date, if: :new_record?
 
