@@ -3,6 +3,10 @@ require "rails_helper"
 describe Card do
   let(:card) { FactoryGirl.create(:card, original_text: "Bueno") }
 
+  it "check the card contains ref to user" do
+    expect(card.attributes).to include("user_id")
+  end
+
   it "check the right answer" do
     expect(card.review("bueno")).to be true
   end
