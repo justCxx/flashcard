@@ -17,10 +17,31 @@
 
   <nav class="navbar navbar-default">
     <a class="navbar-brand" href="/">FlashCard</a>
-    <ul class="nav navbar-nav">
-      <li><%= link_to 'Все карточки', controller: 'cards' %></li>
-      <li><%= link_to 'Добавить карточку', new_card_path %></li>
-    </ul>
+
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Все карточки', controller: 'cards' %></li>
+        <li><%= link_to 'Добавить карточку', new_card_path %></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <a href="logout">
+            <button type="button" class="btn btn-default navbar-btn">Logout</button>
+          </a>
+          <p class="navbar-text">
+            Signed in as <%= link_to current_user.email, edit_user_path(current_user.id) %>
+          </p>
+        <% else %>
+          <a href="signup">
+            <button type="button" class="btn btn-default navbar-btn">Sign Up</button>
+          </a>
+          <!-- <a href="login">
+            <button type="button" class="btn btn-primary navbar-btn">Sign In</button>
+          </a> -->
+        <% end %>
+      </ul>
+    </div>
   </nav>
 
   <p style="font-size: 22px;">

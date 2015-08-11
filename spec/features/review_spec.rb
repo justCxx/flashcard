@@ -1,7 +1,13 @@
 require "rails_helper"
+require "support/login_helper"
 
 describe "Card review" do
-  let(:review) { FactoryGirl.create(:card, original_text: "Bueno") }
+  let!(:user) { FactoryGirl.create(:user, email: "f@b.ru", password: "foobar") }
+  let(:review) { FactoryGirl.create(:card, original_text: "Bueno", user: user) }
+
+  before(:each) do
+    login("f@b.ru", "foobar")
+  end
 
   context "when not available cards for review" do
     it "no cards for review" do
