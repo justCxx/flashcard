@@ -62,3 +62,5 @@ group :development, :test do
   # Strategies for cleaning databases
   gem 'database_cleaner'
 end
+
+gem 'coveralls', group: :test, require: false
