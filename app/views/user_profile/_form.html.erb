@@ -1,0 +1,20 @@
+<%= simple_form_for current_user, url: profile_path do |f| %>
+
+  <% if current_user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(current_user.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h2>
+      <ul>
+        <% current_user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :email, as: :string %>
+  <%= f.input :password %>
+  <%= f.button :submit %>
+<% end %>
