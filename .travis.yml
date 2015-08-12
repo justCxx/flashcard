@@ -11,5 +11,9 @@ script:
   - rake db:test:prepare
   - bundle exec rspec --format documentation
 
+addons:
+  code_climate:
+    repo_token: ef67da00b2b7cc46f799f30f0913fd8fc30909575957082be8b6c088f0e796b0
+
 notifications:
   email: false
