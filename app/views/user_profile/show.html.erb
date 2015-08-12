@@ -1,6 +1,6 @@
 <h3>User profile</h3>
 
-<p>E-mail: <%= @user.email %></p>
-<p>Cards: <%= @user.cards.count %></p>
+<p>E-mail: <%= current_user.email %></p>
+<p>Cards: <%= current_user.cards.count %></p>
 <%= link_to "Edit", edit_profile_path %> |
 <%= link_to "Destroy", profile_path, method: :delete %>

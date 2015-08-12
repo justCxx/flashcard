@@ -1,6 +1,4 @@
 class UserProfileController < ApplicationController
-  before_action :set_user
-
   def show
   end
 
@@ -8,7 +6,7 @@ class UserProfileController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if current_user.update(user_params)
       redirect_to profile_path, notice: "User was successfully updated!"
     else
       render :edit
@@ -16,15 +14,11 @@ class UserProfileController < ApplicationController
   end
 
   def destroy
-    @user.destroy
+    current_user.destroy
     redirect_to root_path, notice: "User was successfully destroyed!"
   end
 
   private
-
-  def set_user
-    @user = current_user
-  end
 
   def user_params
     params.require(:user).permit(:email, :password)
