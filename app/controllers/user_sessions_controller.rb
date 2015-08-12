@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  skip_before_filter :require_login, except: [:destroy]
+  skip_before_action :require_login, except: [:destroy]
 
   def new
     @user = User.new
@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
 
   def create
     if @user = login(login_params[:email], login_params[:password])
-      redirect_back_or_to(new_review_path, notice: "Login successfull")
+      redirect_back_or_to(root_path, notice: "Login successfull")
     else
       flash.now[:alert] = "Login failed!"
       render action: "new"

@@ -7,7 +7,7 @@ describe "User session" do
   context "when user not logged" do
     it "login form shown" do
       visit root_path
-      expect(page).to have_content("First login to access this page.")
+      expect(page).to have_content("First login to access this page!")
     end
   end
 

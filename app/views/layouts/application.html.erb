@@ -20,7 +20,7 @@
 
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to 'Все карточки', controller: 'cards' %></li>
+        <li><%= link_to 'Все карточки', cards_path %></li>
         <li><%= link_to 'Добавить карточку', new_card_path %></li>
       </ul>
 
@@ -30,7 +30,7 @@
             <button type="button" class="btn btn-default navbar-btn">Logout</button>
           </a>
           <p class="navbar-text">
-            Signed in as <%= link_to current_user.email, edit_user_path(current_user.id) %>
+            Signed in as <%= link_to current_user.email, profile_path %>
           </p>
         <% else %>
           <a href="signup">
@@ -45,9 +45,11 @@
     Первый в мире удобный менеджер флеш-карточек. Именно так.
   </p>
 
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg %>
-  <% end -%>
+  <% flash.each do |type, message| %>
+    <div class="alert <%= bootstrap_class_for(type) %> role="alert">
+      <%= message %>
+    </div>
+  <% end %>
 
   <%= yield %>
 

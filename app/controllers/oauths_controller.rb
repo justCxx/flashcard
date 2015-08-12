@@ -1,5 +1,5 @@
 class OauthsController < ApplicationController
-  skip_before_filter :require_login, except: :destroy
+  skip_before_action :require_login, except: :destroy
 
   def oauth
     login_at(auth_params[:provider])
@@ -28,7 +28,6 @@ class OauthsController < ApplicationController
     else
       flash[:alert] = "You do not have a linked #{provider.titleize} account."
     end
-
     redirect_to root_path
   end
 
