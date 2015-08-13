@@ -1,9 +1,7 @@
 <%= simple_form_for :review, url: reviews_path  do |f| %>
   <%= f.hidden_field :card_id, value: card.id %>
   <div align="center">
-    <% if card.image_file_name %>
-      <%= image_tag card.image.url(:medium) %>
-    <% end %>
+    <%= image_tag card.image.url(:medium) %>
     <p><%= card.translated_text %></p>
   </div>
   <%= f.input :answer %>

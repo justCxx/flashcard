@@ -13,11 +13,11 @@ module Flashcard
     # -- all .rb files in that directory are automatically loaded.
 
     config.paperclip_defaults = {
-      storage: :s3,
+      storage: ENV["PAPERCLIP_STORAGE"],
       s3_credentials: {
-        bucket: ENV["s3_bucket"],
-        access_key_id: ENV["s3_access_key_id"],
-        secret_access_key: ENV["s3_secret_access_key"],
+        bucket: ENV["S3_BUCKET"],
+        access_key_id: ENV["S3_ACCESS_KEY_ID"],
+        secret_access_key: ENV["S3_SECRET_ACCESS_KEY"],
       }
     }
 

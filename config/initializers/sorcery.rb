@@ -13,8 +13,8 @@ Rails.application.config.sorcery.submodules = [:external]
 Rails.application.config.sorcery.configure do |config|
   config.external_providers = [:github]
 
-  config.github.key = ENV["ouath_github_key"]
-  config.github.secret = ENV["ouath_github_secret"]
+  config.github.key = ENV["OUATH_GITHUB_KEY"]
+  config.github.secret = ENV["OUATH_GITHUB_SECRET"]
   config.github.callback_url = "#{SERVER}/oauth/callback?provider=github"
   config.github.user_info_mapping = { email: :email }
 
