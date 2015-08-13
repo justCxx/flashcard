@@ -16,6 +16,10 @@
 
   <%= f.input :original_text, as: :string %>
   <%= f.input :translated_text, as: :string %>
+  <div align="center">
+    <%= image_tag card.image.url(:medium) %>
+  </div>
+  <%= f.input :image, as: :file %>
   <%= f.input :review_date %>
   <%= f.button :submit %>
 <% end %>
