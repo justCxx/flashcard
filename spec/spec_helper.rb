@@ -15,11 +15,15 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-require 'coveralls'
-Coveralls.wear!
-
 require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
+require 'coveralls'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  Coveralls::SimpleCov::Formatter,
+  SimpleCov::Formatter::HTMLFormatter,
+  CodeClimate::TestReporter::Formatter
+]
+SimpleCov.start 'rails'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
