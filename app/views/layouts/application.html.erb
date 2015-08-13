@@ -26,14 +26,14 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <a href="logout">
+          <a href=<%= logout_path %> >
             <button type="button" class="btn btn-default navbar-btn">Logout</button>
           </a>
           <p class="navbar-text">
             Signed in as <%= link_to current_user.email, profile_path %>
           </p>
         <% else %>
-          <a href="signup">
+          <a href=<%= signup_path %>>
             <button type="button" class="btn btn-default navbar-btn">Sign Up</button>
           </a>
         <% end %>

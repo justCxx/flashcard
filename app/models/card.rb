@@ -7,12 +7,10 @@ class Card < ActiveRecord::Base
 
   before_validation :set_review_date, if: :new_record?
 
-  has_attached_file :image, styles: { medium: "360x360", thumb: "100x100" },
-                            default_url: "/images/cards/:style/missing.png"
+  has_attached_file :image, styles: { medium: "360x360", thumb: "100x100" }
 
-  validates_attachment :image,
-                        content_type: { content_type: /\Aimage\/.*\Z/ },
-                        size: { in: 0..1.megabytes }
+  validates_attachment :image, content_type: { content_type: /\Aimage\/.*\Z/ },
+                               size: { in: 0..1.megabytes }
 
   def self.for_review
     cards = where("review_date < ?", Date.today)

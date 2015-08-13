@@ -30,6 +30,9 @@ gem "sorcery"
 gem "figaro"
 # File attachment library for Active Record
 gem "paperclip"
+# Use Amazon S3 file storage
+gem "aws-sdk-v1"
+gem "aws-sdk"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger cli

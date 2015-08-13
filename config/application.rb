@@ -12,6 +12,15 @@ module Flashcard
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.paperclip_defaults = {
+      storage: :s3,
+      s3_credentials: {
+        bucket: ENV["s3_bucket"],
+        access_key_id: ENV["s3_access_key_id"],
+        secret_access_key: ENV["s3_secret_access_key"],
+      }
+    }
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
