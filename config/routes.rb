@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   resources :decks do
     resources :cards
+    member do
+      put "set_default"
+    end
   end
+
+
   resources :reviews, only: [:new, :create]
   resources :user_sessions, path: :login, only: [:create]
 
@@ -25,5 +30,4 @@ Rails.application.routes.draw do
   patch "profile" => "user_profile#update"
   delete "profile" => "user_profile#destroy"
 
-  get "decks/:id/set_default" => "decks#set_default", :as => :set_default_deck
 end
