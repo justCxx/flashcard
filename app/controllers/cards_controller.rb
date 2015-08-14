@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_deck, except: [new]
+  before_action :set_deck
   before_action :set_card, except: [:index, :new, :create]
 
   def index

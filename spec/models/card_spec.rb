@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Card do
+RSpec.describe Card, type: :model do
   let(:card) { FactoryGirl.create(:card, original_text: "Bueno") }
 
   it "card have ref to deck" do

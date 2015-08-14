@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :decks, dependent: :destroy
   has_many :authentications, dependent: :destroy
+  belongs_to :default_deck, class_name: "Deck", foreign_key: "default_deck_id"
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -12,11 +13,11 @@ class User < ActiveRecord::Base
   validates :crypted_password, presence: true
   validates :password, length: { minimum: 6 }, if: :new_record?
 
-  def default_deck
-    if default_deck_id
-      decks.find(default_deck_id)
+  def cards_for_review
+    if default_deck
+      default_deck.cards.for_review
     else
-      decks.offset(rand(decks.count)).first
+      Card.where(deck_id: decks).for_review
     end
   end
 

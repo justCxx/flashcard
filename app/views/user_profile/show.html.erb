@@ -2,7 +2,14 @@
 
 <p>E-mail: <%= current_user.email %></p>
 <p>Decks: <%= current_user.decks.count %></p>
-<p>Default deck: <%= current_user.decks.find(current_user.default_deck_id).title %></p>
+<p>Default deck:
+<% if current_user.default_deck %>
+  <%= current_user.default_deck.title %>
+<% else %>
+  no default deck
+<% end %>
+</p>
+
 
 <%= link_to "Edit", edit_profile_path %> |
 <%= link_to "Destroy", profile_path, method: :delete %>
