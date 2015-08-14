@@ -20,8 +20,8 @@
 
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><%= link_to 'Все карточки', cards_path %></li>
-        <li><%= link_to 'Добавить карточку', new_card_path %></li>
+        <li><%= link_to "Колоды", decks_path %></li>
+        <li><%= link_to "Добавить колоду", new_deck_path %></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -42,7 +42,7 @@
   </p>
 
   <% flash.each do |type, message| %>
-    <div class="alert <%= bootstrap_class_for(type) %> role="alert">
+    <div class="alert <%= bootstrap_class_for(type) %>" role="alert">
       <%= message %>
     </div>
   <% end %>

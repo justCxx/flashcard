@@ -1,4 +1,4 @@
-<%= simple_form_for card do |f| %>
+<%= simple_form_for [@deck, card] do |f| %>
 
   <% if card.errors.any? %>
     <div id="error_explanation">

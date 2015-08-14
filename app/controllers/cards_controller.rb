@@ -1,24 +1,25 @@
 class CardsController < ApplicationController
+  before_action :set_deck, except: [new]
   before_action :set_card, except: [:index, :new, :create]
 
   def index
-    @cards = current_user.cards
+    @cards = @deck.cards
   end
 
   def show
   end
 
   def new
-    @card = Card.new
+    @card = @deck.cards.new
   end
 
   def edit
   end
 
   def create
-    @card = current_user.cards.new(card_params)
+    @card = @deck.cards.new(card_params)
     if @card.save
-      redirect_to cards_path
+      redirect_to deck_cards_path(@deck)
     else
       render "new"
     end
@@ -26,7 +27,7 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to cards_path
+      redirect_to deck_cards_path(@deck)
     else
       render "edit"
     end
@@ -34,7 +35,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    redirect_to cards_path
+    redirect_to deck_cards_path(@deck)
   end
 
   private
@@ -45,6 +46,10 @@ class CardsController < ApplicationController
   end
 
   def set_card
-    @card = current_user.cards.find(params[:id])
+    @card = @deck.cards.find(params[:id])
+  end
+
+  def set_deck
+    @deck = current_user.decks.find(params[:deck_id])
   end
 end

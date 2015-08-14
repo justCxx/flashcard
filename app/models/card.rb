@@ -1,9 +1,9 @@
 class Card < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :deck
 
   validates :original_text, :translated_text, :review_date, presence: true
   validate :words_different
-  validates_associated :user
+  validates_associated :deck
 
   before_validation :set_review_date, if: :new_record?
 

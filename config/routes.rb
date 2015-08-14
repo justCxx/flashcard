@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   root "reviews#new"
 
-  resources :cards
-  resources :reviews
-  resources :user_sessions
+  resources :decks do
+    resources :cards
+  end
+  resources :reviews, only: [:new, :create]
+  resources :user_sessions, path: :login, only: [:create]
 
   # Registration and authentication
   get "login" => "user_sessions#new"
@@ -22,4 +24,6 @@ Rails.application.routes.draw do
   get "profile/edit" => "user_profile#edit", :as => :edit_profile
   patch "profile" => "user_profile#update"
   delete "profile" => "user_profile#destroy"
+
+  get "decks/:id/set_default" => "decks#set_default", :as => :set_default_deck
 end

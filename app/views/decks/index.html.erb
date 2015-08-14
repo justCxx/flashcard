@@ -1,0 +1,19 @@
+<h3>Колоды (<%= @decks.count %>)</h3>
+
+<table width="100%">
+  <tr>
+    <th>Название</th>
+    <th>Карточек</th>
+    <th>Для просмотра</th>
+  </tr>
+
+  <% @decks.each do |deck| %>
+    <tr>
+      <td><%= link_to deck.title, deck_path(deck) %></td>
+      <td><%= deck.cards.count %></td>
+      <td><%= deck.cards.for_review.count %></td>
+      <td><%= link_to 'Редактировать', edit_deck_path(deck) %></td>
+      <td><%= link_to 'Удалить', deck_path(deck), method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
