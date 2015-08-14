@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "new_card" => "cards#new_deck"
+  post "new_card" => "cards#create_deck"
 
   resources :reviews, only: [:new, :create]
   resources :user_sessions, path: :login, only: [:create]
