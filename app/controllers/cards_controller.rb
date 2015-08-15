@@ -13,7 +13,7 @@ class CardsController < ApplicationController
     @card = Card.new
     unless @deck
       @deck = @card.build_deck
-      render "new_deck"
+      @new_deck = true
     end
   end
 

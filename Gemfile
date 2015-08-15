@@ -63,4 +63,7 @@ group :test do
   # CI helpers
   gem "coveralls", require: false
   gem "codeclimate-test-reporter", require: false
+
+  # RSpec formatter
+  gem "fuubar", require: false
 end

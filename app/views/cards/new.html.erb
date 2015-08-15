@@ -1,1 +1,2 @@
-<%= render 'form', deck: @deck, card: @card, url: deck_cards_path(@deck) %>
+<% form_url = @new_deck ? new_card_path : deck_cards_path(@deck) %>
+<%= render 'form', deck: @deck, card: @card, url: form_url %>

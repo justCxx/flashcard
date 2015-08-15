@@ -1,14 +1,10 @@
 require "rails_helper"
 require "support/login_helper"
 
-describe "Decks" do
-  let!(:deck) do
-    FactoryGirl.create(:deck)
-  end
+describe "Deck" do
+  let!(:deck) { FactoryGirl.create(:deck) }
 
-  before(:each) do
-    login("foo@bar.com", "foobar")
-  end
+  before(:each) { login("foo@bar.com", "foobar") }
 
   it "titled deck added" do
     deck_count = deck.user.decks.count
