@@ -1,4 +1,4 @@
-<%= simple_form_for [@deck, card] do |f| %>
+<%= simple_form_for [deck, card], url: url do |f| %>
 
   <% if card.errors.any? %>
     <div id="error_explanation">
@@ -12,6 +12,12 @@
         <% end %>
       </ul>
     </div>
+  <% end %>
+
+  <% if deck.new_record? %>
+    <%= simple_fields_for deck do |deck_form| %>
+      <%= deck_form.input :title, label: "Deck title", as: :string %>
+    <% end %>
   <% end %>
 
   <%= f.input :original_text, as: :string %>

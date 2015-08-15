@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get "new_card" => "cards#new_deck"
-  post "new_card" => "cards#create_deck"
+  get "new_card" => "cards#new"
+  post "new_card" => "cards#create"
 
   resources :reviews, only: [:new, :create]
   resources :user_sessions, path: :login, only: [:create]
@@ -31,5 +31,4 @@ Rails.application.routes.draw do
   get "profile/edit" => "user_profile#edit", :as => :edit_profile
   patch "profile" => "user_profile#update"
   delete "profile" => "user_profile#destroy"
-
 end
