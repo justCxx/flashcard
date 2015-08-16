@@ -11,11 +11,9 @@ class CardsController < ApplicationController
   def new
     @card = Card.new
     @deck = @card.build_deck
-    @decks = current_user.decks
   end
 
   def edit
-    @decks = current_user.decks
   end
 
   def create
@@ -54,14 +52,14 @@ class CardsController < ApplicationController
 
   def new_deck
     @decks = current_user.decks
-    if !deck_params[:title].empty?
+    if deck_params[:title].present?
       @decks.create(title: deck_params[:title])
-    elsif !card_params[:deck_id].empty?
+    elsif card_params[:deck_id].present?
       @decks.find(card_params[:deck_id])
     end
   end
 
   def set_card
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
   end
 end

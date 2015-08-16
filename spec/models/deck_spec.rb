@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Deck, type: :model do
+describe Deck do
   let(:deck) { FactoryGirl.create(:deck, title: "MyDeck") }
 
   it "created a new" do

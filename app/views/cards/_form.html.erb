@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-  <%= f.input :deck_id, collection: decks, label: "Select deck" %>
+  <%= f.input :deck_id, collection: current_user.decks, label: "Select deck" %>
 
   <p><b>Or creare new:</b></p>
 

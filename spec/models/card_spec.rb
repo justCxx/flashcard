@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Card, type: :model do
+describe Card do
   let(:card) { FactoryGirl.create(:card, original_text: "Bueno") }
   let(:invalid) { FactoryGirl.build(:card, translated_text: "foo") }
 
