@@ -1,11 +1,11 @@
 <h3><%= @deck.title %> (<%= @cards.count %>)</h3>
-<%= link_to "Add card", new_deck_card_path(@deck) %>
+<%= link_to "Add card", new_card_path(@deck) %>
 
 <table width="100%">
   <tr>
-    <th>Оригинал</th>
-    <th>Перевод</th>
-    <th>Просмотр</th>
+    <th>Original</th>
+    <th>Translated</th>
+    <th>Review</th>
   </tr>
 
   <% @cards.each do |card| %>
@@ -14,8 +14,8 @@
       <td><%= card.translated_text %></td>
       <td><%= image_tag card.image.url(:thumb) %></td>
       <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
-      <td><%= link_to "Edit", edit_deck_card_path(@deck, card) %></td>
-      <td><%= link_to "Remove", deck_card_path(@deck, card), method: :delete %></td>
+      <td><%= link_to "Edit", edit_card_path(card) %></td>
+      <td><%= link_to "Remove", card_path(card), method: :delete %></td>
     </tr>
   <% end %>
 </table>

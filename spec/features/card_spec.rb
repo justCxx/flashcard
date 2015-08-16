@@ -25,14 +25,14 @@ describe "Card" do
     let!(:card) { FactoryGirl.create(:card, deck: deck) }
 
     it "edit card translated" do
-      visit edit_deck_card_path(deck, card)
+      visit edit_card_path(card)
       fill_in("card_translated_text", with: "new text")
       click_button "Update Card"
       expect(deck.cards.first.translated_text).to eq "new text"
     end
 
     it "remove card" do
-      visit deck_cards_path(deck)
+      visit cards_path(deck_id: deck.id)
       first(:link, "Remove").click
       expect(deck.cards.count).to be 0
     end

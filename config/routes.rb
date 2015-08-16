@@ -2,15 +2,12 @@ Rails.application.routes.draw do
   root "reviews#new"
 
   resources :decks do
-    resources :cards
     member do
       put "set_default"
     end
   end
 
-  get "new_card" => "cards#new"
-  post "new_card" => "cards#create"
-
+  resources :cards
   resources :reviews, only: [:new, :create]
   resources :user_sessions, path: :login, only: [:create]
 
