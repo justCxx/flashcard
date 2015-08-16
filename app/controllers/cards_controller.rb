@@ -1,10 +1,8 @@
 class CardsController < ApplicationController
-  before_action :set_decks
   before_action :set_card, except: [:index, :new, :create]
 
   def index
-    @deck = current_user.decks.find(params[:deck_id])
-    @cards = @deck.cards
+    @cards = current_user.cards
   end
 
   def show
@@ -13,9 +11,11 @@ class CardsController < ApplicationController
   def new
     @card = Card.new
     @deck = @card.build_deck
+    @decks = current_user.decks
   end
 
   def edit
+    @decks = current_user.decks
   end
 
   def create
@@ -29,8 +29,8 @@ class CardsController < ApplicationController
   end
 
   def update
-    if @card.update(card_params)
-      redirect_to :back
+    if @card.update(card_params) && @card.update_attributes(deck: new_deck)
+      redirect_to deck_path(@card.deck)
     else
       render "edit"
     end
@@ -53,18 +53,15 @@ class CardsController < ApplicationController
   end
 
   def new_deck
-    if not card_params[:deck_id].empty?
-      @decks.find(card_params[:deck_id])
-    elsif not deck_params[:title].empty?
+    @decks = current_user.decks
+    if !deck_params[:title].empty?
       @decks.create(title: deck_params[:title])
+    elsif !card_params[:deck_id].empty?
+      @decks.find(card_params[:deck_id])
     end
   end
 
   def set_card
     @card = Card.find(params[:id])
-  end
-
-  def set_decks
-    @decks = current_user.decks
   end
 end

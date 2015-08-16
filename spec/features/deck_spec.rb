@@ -24,7 +24,7 @@ describe "Deck" do
 
   it "show cards in deck" do
     visit deck_path(deck)
-    expect(current_path).to eq cards_path
+    expect(current_path).to eq deck_path(deck)
   end
 
   it "update deck title" do

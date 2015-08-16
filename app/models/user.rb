@@ -13,12 +13,12 @@ class User < ActiveRecord::Base
   validates :crypted_password, presence: true
   validates :password, length: { minimum: 6 }, if: :new_record?
 
+  def cards
+    Card.where(deck_id: decks)
+  end
+
   def cards_for_review
-    if default_deck
-      default_deck.cards.for_review
-    else
-      Card.where(deck_id: decks).for_review
-    end
+    default_deck ? default_deck.cards.for_review : cards.for_review
   end
 
   def has_linked_github?

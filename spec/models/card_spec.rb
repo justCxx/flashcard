@@ -2,9 +2,14 @@ require "rails_helper"
 
 RSpec.describe Card, type: :model do
   let(:card) { FactoryGirl.create(:card, original_text: "Bueno") }
+  let(:invalid) { FactoryGirl.build(:card, translated_text: "foo") }
 
   it "card have ref to deck" do
     expect(card.attributes).to include("deck_id")
+  end
+
+  it "invalid factory" do
+    expect(invalid).to be_invalid
   end
 
   it "right answer" do

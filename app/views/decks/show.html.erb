@@ -1,4 +1,4 @@
-<h3>All cards</h3>
+<h3><%= @deck.title %> (<%= @cards.count %>)</h3>
 
 <table width="100%">
   <tr>
@@ -6,7 +6,6 @@
     <th>Translated</th>
     <th>Image</th>
     <th>Review</th>
-    <th>Deck</th>
   </tr>
 
   <% @cards.each do |card| %>
@@ -15,7 +14,6 @@
       <td><%= card.translated_text %></td>
       <td><%= image_tag card.image.url(:thumb) %></td>
       <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
-      <td><%= card.deck.title %></td>
       <td><%= link_to "Edit", edit_card_path(card) %></td>
       <td><%= link_to "Remove", card_path(card), method: :delete %></td>
     </tr>

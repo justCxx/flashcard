@@ -6,7 +6,7 @@ class DecksController < ApplicationController
   end
 
   def show
-    redirect_to cards_path(deck_id: @deck.id)
+    @cards = @deck.cards
   end
 
   def new
