@@ -10,23 +10,25 @@ class CardsController < ApplicationController
 
   def new
     @card = Card.new
+    @deck = @card.build_deck
   end
 
   def edit
   end
 
   def create
-    @card = current_user.cards.new(card_params)
+    @deck = new_deck
+    @card = @deck.cards.new(card_params)
     if @card.save
-      redirect_to cards_path
+      redirect_to decks_path
     else
       render "new"
     end
   end
 
   def update
-    if @card.update(card_params)
-      redirect_to cards_path
+    if @card.update(card_params) && @card.update_attributes(deck: new_deck)
+      redirect_to deck_path(@card.deck)
     else
       render "edit"
     end
@@ -34,14 +36,27 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    redirect_to cards_path
+    redirect_to :back
   end
 
   private
 
   def card_params
     params.require(:card).permit(:original_text, :translated_text,
-                                 :review_date, :image)
+                                 :review_date, :image, :deck_id)
+  end
+
+  def deck_params
+    params.require(:deck).permit(:title)
+  end
+
+  def new_deck
+    @decks = current_user.decks
+    if deck_params[:title].present?
+      @decks.create(title: deck_params[:title])
+    elsif card_params[:deck_id].present?
+      @decks.find(card_params[:deck_id])
+    end
   end
 
   def set_card

@@ -54,6 +54,16 @@ group :development, :test do
   gem "database_cleaner"
 end
 
-# CI helpers
-gem "coveralls", group: :test, require: false
-gem "codeclimate-test-reporter", group: :test, require: false
+group :development do
+  gem "guard"
+  gem "guard-livereload"
+end
+
+group :test do
+  # CI helpers
+  gem "coveralls", require: false
+  gem "codeclimate-test-reporter", require: false
+
+  # RSpec formatter
+  gem "fuubar", require: false
+end

@@ -3,13 +3,13 @@ FactoryGirl.define do
     email "foo@bar.com"
     password "foobar"
 
-    factory :user_with_cards do
+    factory :user_with_decks do
       transient do
-        cards_count 5
+        decks_count 1
       end
 
       after(:create) do |user, evaluator|
-        create_list(:card, evaluator.cards_count, user: user)
+        create_list(:deck, evaluator.decks_count, user: user)
       end
     end
   end

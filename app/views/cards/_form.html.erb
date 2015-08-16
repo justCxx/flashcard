@@ -3,8 +3,8 @@
   <% if card.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(card.errors.count, "error") %> prohibited
-        this card from being saved:
+        <%= pluralize(card.errors.count, "error") %>
+        prohibited this card from being saved:
       </h2>
       <ul>
         <% card.errors.full_messages.each do |msg| %>
@@ -12,6 +12,14 @@
         <% end %>
       </ul>
     </div>
+  <% end %>
+
+  <%= f.input :deck_id, collection: current_user.decks, label: "Select deck" %>
+
+  <p><b>Or creare new:</b></p>
+
+  <%= simple_fields_for Deck.new do |f_deck| %>
+    <%= f_deck.input :title %>
   <% end %>
 
   <%= f.input :original_text, as: :string %>

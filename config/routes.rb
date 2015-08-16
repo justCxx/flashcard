@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   root "reviews#new"
 
+  resources :decks do
+    member do
+      put "set_default"
+    end
+  end
+
   resources :cards
-  resources :reviews
-  resources :user_sessions
+  resources :reviews, only: [:new, :create]
+  resources :user_sessions, path: :login, only: [:create]
 
   # Registration and authentication
   get "login" => "user_sessions#new"

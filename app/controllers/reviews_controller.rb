@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def new
-    @card = Card.for_review.first
+    @card = current_user.cards_for_review.first
   end
 
   def create

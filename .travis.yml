@@ -9,7 +9,7 @@ before_script:
 script:
   - rake db:create
   - rake db:test:prepare
-  - bundle exec rspec --format documentation
+  - bundle exec rspec
 
 addons:
   code_climate:
