@@ -9,13 +9,14 @@ class OauthsController < ApplicationController
     provider = auth_params[:provider]
     if @user = login_from(provider)
       redirect_to root_path, notice: "Logged in from #{provider.titleize}"
+    elsif logged_in?
+      link_account(provider)
+      redirect_to root_path, notice: "Successfully link #{provider.titleize}"
     else
-      if logged_in?
-        link_account(provider)
-        redirect_to root_path
-      else
-        redirect_to root_path, alert: "Failed login from #{provider.titleize}!"
-      end
+      @user = create_from(provider)
+      reset_session
+      auto_login(@user)
+      redirect_to root_path, notice: "Logged in from #{provider.titleize}"
     end
   end
 
