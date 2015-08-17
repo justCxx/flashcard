@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   validates :email, presence: true, uniqueness: true
-  validates :crypted_password, presence: true
   validates :password, length: { minimum: 6 }, if: :new_record?
 
   def cards
