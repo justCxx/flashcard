@@ -5,8 +5,6 @@
 # :reset_password, :session_timeout, :brute_force_protection,
 # :activity_logging, :external
 
-SERVER = "http://0.0.0.0:3000"
-
 Rails.application.config.sorcery.submodules = [:external]
 
 # Here you can configure each submodule's features.
@@ -15,7 +13,7 @@ Rails.application.config.sorcery.configure do |config|
 
   config.github.key = ENV["OUATH_GITHUB_KEY"]
   config.github.secret = ENV["OUATH_GITHUB_SECRET"]
-  config.github.callback_url = "#{SERVER}/oauth/callback?provider=github"
+  config.github.callback_url = "#{ENV['APP_HOST']}/oauth/callback?provider=github"
   config.github.user_info_mapping = { email: :email }
 
   # --- user config ---
