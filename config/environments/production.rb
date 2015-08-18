@@ -2,7 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.paperclip_defaults = {
-    storage: "s3",
+    storage: ENV["PAPERCLIP_STORAGE"],
     s3_credentials: {
       bucket: ENV["S3_BUCKET"],
       access_key_id: ENV["S3_ACCESS_KEY_ID"],

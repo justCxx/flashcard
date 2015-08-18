@@ -3,14 +3,10 @@ class User < ActiveRecord::Base
   has_many :authentications, dependent: :destroy
   belongs_to :default_deck, class_name: "Deck", foreign_key: "default_deck_id"
 
-  authenticates_with_sorcery! do |config|
-    config.authentications_class = Authentication
-  end
-
+  authenticates_with_sorcery!
   accepts_nested_attributes_for :authentications
 
   validates :email, presence: true, uniqueness: true
-  validates :crypted_password, presence: true
   validates :password, length: { minimum: 6 }, if: :new_record?
 
   def cards

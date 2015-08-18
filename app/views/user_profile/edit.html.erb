@@ -2,4 +2,6 @@
 
 <%= render "form" %>
 
-<%= link_to 'Link GitHub account', auth_at_provider_path(provider: :github) %>
+<% unless current_user.external? %>
+  <%= link_to "Link GitHub account", auth_at_provider_path(provider: :github) %>
+<% end %>
