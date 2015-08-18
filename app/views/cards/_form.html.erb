@@ -28,6 +28,6 @@
     <%= image_tag card.image.url(:medium) %>
   </div>
   <%= f.input :image, as: :file %>
-  <%= f.input :review_date %>
+  <%= f.input :review_date unless card.new_record? %>
   <%= f.button :submit %>
 <% end %>
