@@ -4,3 +4,7 @@ def login(email, password)
   fill_in :user_password, with: password
   click_on "Sign In"
 end
+
+def default_login
+  login("foo@bar.com", "foobar")
+end
