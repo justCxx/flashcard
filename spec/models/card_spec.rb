@@ -2,9 +2,7 @@ require "rails_helper"
 
 describe Card do
   context "initialize" do
-    let(:invalid) do
-      FactoryGirl.build(:card, original_text: "foo", translated_text: "foo")
-    end
+    let(:invalid) { build(:card, original_text: "foo", translated_text: "foo") }
 
     it "invalid card" do
       expect(invalid).to be_invalid
@@ -33,7 +31,7 @@ describe Card do
   describe "#handle_correct_answer" do
     before(:each) do
       @original_date = card.review_date
-      right_review(card)
+      card.review(card.original_text)
     end
 
     context "after the first right review" do
@@ -65,7 +63,7 @@ describe Card do
   describe "#handle_incorrect_answer" do
     before(:each) do
       @original_date = card.review_date
-      wrong_review(card)
+      card.review("#{card.original_text}foo")
     end
 
     context "after the first wrong review" do
@@ -83,12 +81,4 @@ describe Card do
       it { expect(card.correct_answers).to eq 0 }
     end
   end
-end
-
-def right_review(card)
-  card.review(card.original_text)
-end
-
-def wrong_review(card)
-  card.review("#{card.original_text}foo")
 end
