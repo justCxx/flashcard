@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150814031801) do
+ActiveRecord::Schema.define(version: 20150819110029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,14 +29,16 @@ ActiveRecord::Schema.define(version: 20150814031801) do
   create_table "cards", force: :cascade do |t|
     t.text     "original_text"
     t.text     "translated_text"
-    t.date     "review_date"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "review_date"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "deck_id",            null: false
+    t.integer  "deck_id",                        null: false
+    t.integer  "correct_answers",    default: 0
+    t.integer  "incorrect_answers",  default: 0
   end
 
   add_index "cards", ["deck_id"], name: "index_cards_on_deck_id", using: :btree

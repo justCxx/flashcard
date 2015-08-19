@@ -1,7 +1,7 @@
 require "rails_helper"
 require "support/login_helper"
 
-describe "Card" do
+describe "Card features" do
   let!(:user) { FactoryGirl.create(:user) }
 
   before(:each) { login("foo@bar.com", "foobar") }

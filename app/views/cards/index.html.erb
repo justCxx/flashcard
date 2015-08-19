@@ -6,6 +6,8 @@
     <th>Translated</th>
     <th>Image</th>
     <th>Review</th>
+    <th>Correct answers</th>
+    <th>Incorrect answers</th>
     <th>Deck</th>
   </tr>
 
@@ -14,7 +16,9 @@
       <td><%= card.original_text %></td>
       <td><%= card.translated_text %></td>
       <td><%= image_tag card.image.url(:thumb) %></td>
-      <td><%= card.review_date.strftime("%d/%m/%Y") %></td>
+      <td><%= card.review_date.strftime("%d/%m/%Y %H:%M") %></td>
+      <td><%= card.correct_answers %></td>
+      <td><%= card.incorrect_answers %></td>
       <td><%= card.deck.title %></td>
       <td><%= link_to "Edit", edit_card_path(card) %></td>
       <td><%= link_to "Remove", card_path(card), method: :delete %></td>

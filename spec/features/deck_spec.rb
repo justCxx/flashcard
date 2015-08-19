@@ -1,7 +1,7 @@
 require "rails_helper"
 require "support/login_helper"
 
-describe "Deck" do
+describe "Deck features" do
   let!(:deck) { FactoryGirl.create(:deck) }
 
   before(:each) { login("foo@bar.com", "foobar") }

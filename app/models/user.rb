@@ -16,8 +16,4 @@ class User < ActiveRecord::Base
   def cards_for_review
     default_deck ? default_deck.cards.for_review : cards.for_review
   end
-
-  def has_linked_github?
-    authentications.where(provider: "github").present?
-  end
 end
