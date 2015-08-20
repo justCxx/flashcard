@@ -7,13 +7,10 @@ class ReviewsController < ApplicationController
     @card = current_user.cards.find(review_params[:card_id])
     review = @card.review(review_params[:answer])
 
-    case review[:typos]
-    when 0
-      flash[:success] = "Right! Next review: #{@card.review_date.localtime}"
-    when 1..Card::MAX_LEVENSHTEIN_DISTANCE
-      flash[:success] = "Almost correct. Original: #{@card.original_text}, " \
+    if review[:success]
+      flash[:success] = "Right! Original: #{@card.original_text}, " \
                         "translated: #{@card.translated_text}. " \
-                        "Your answer: #{review[:user_answer]}. " \
+                        "Your answer: #{review_params[:answer]}. " \
                         "Typos: #{review[:typos]}. " \
                         "Next review: #{@card.review_date.localtime}"
     else

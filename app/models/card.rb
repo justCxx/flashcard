@@ -31,7 +31,7 @@ class Card < ActiveRecord::Base
       handle_incorrect_answer
     end
 
-    { typos: typos, user_answer: normalize(translated).titleize }
+    { success: typos <= MAX_LEVENSHTEIN_DISTANCE, typos: typos }
   end
 
   protected

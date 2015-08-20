@@ -29,7 +29,7 @@ describe "Review features" do
     it "input almost correct answer" do
       fill_in("Answer", with: "byeno")
       click_on "Проверить"
-      expect(page).to have_content "Almost correct"
+      expect(page).to have_content "Typos: 1"
     end
 
     it "input wrong answer" do
