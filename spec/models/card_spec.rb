@@ -23,8 +23,12 @@ describe Card do
       expect(card.review("  bueno  ")[:typos]).to be 0
     end
 
+    it "right answer with typos" do
+      expect(card.review("byeno")[:typos]).to be 1
+    end
+
     it "wrong answer" do
-      expect(card.review("malo")[:typos]).to be > 0
+      expect(card.review("malo")[:typos]).to be > 1
     end
   end
 
