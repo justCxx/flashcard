@@ -20,10 +20,16 @@ describe "Review features" do
       visit new_review_path
     end
 
-    it "input right answer" do
+    it "input correct answer" do
       fill_in("Answer", with: "bueno")
       click_on "Проверить"
       expect(page).to have_content "Right!"
+    end
+
+    it "input almost correct answer" do
+      fill_in("Answer", with: "byeno")
+      click_on "Проверить"
+      expect(page).to have_content "Typos: 1"
     end
 
     it "input wrong answer" do

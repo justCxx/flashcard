@@ -1,6 +1,7 @@
 class Card < ActiveRecord::Base
   MAX_CORRECT_ANSWERS = 5
   MAX_INCORRECT_ANSWERS = 3
+  MAX_LEVENSHTEIN_DISTANCE = 1
 
   belongs_to :deck
 
@@ -22,12 +23,15 @@ class Card < ActiveRecord::Base
   end
 
   def review(translated)
-    if words_equal?(translated, original_text)
+    typos = words_distanse(translated, original_text)
+
+    if typos <= MAX_LEVENSHTEIN_DISTANCE
       handle_correct_answer
     else
       handle_incorrect_answer
-      false
     end
+
+    { success: typos <= MAX_LEVENSHTEIN_DISTANCE, typos: typos }
   end
 
   protected
@@ -72,12 +76,12 @@ class Card < ActiveRecord::Base
   end
 
   def words_different
-    if words_equal?(original_text, translated_text)
+    if normalize(original_text) == (translated_text)
       errors.add(:original_text, "can't equal translated text")
     end
   end
 
-  def words_equal?(word1, word2)
-    normalize(word1) == normalize(word2)
+  def words_distanse(word1, word2)
+    DamerauLevenshtein.distance(normalize(word1), normalize(word2))
   end
 end

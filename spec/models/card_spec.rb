@@ -12,19 +12,23 @@ describe Card do
   context "check input" do
     let(:card) { FactoryGirl.create(:card, original_text: "Bueno") }
     it "right answer" do
-      expect(card.review("bueno")).to be true
+      expect(card.review("bueno")[:typos]).to be 0
     end
 
     it "right answer case insensitive" do
-      expect(card.review("BuENo")).to be true
+      expect(card.review("BuENo")[:typos]).to be 0
     end
 
     it "right answer with trailing whitespaces" do
-      expect(card.review("  bueno  ")).to be true
+      expect(card.review("  bueno  ")[:typos]).to be 0
+    end
+
+    it "right answer with typos" do
+      expect(card.review("byeno")[:typos]).to be 1
     end
 
     it "wrong answer" do
-      expect(card.review("malo")).to be false
+      expect(card.review("malo")[:typos]).to be > 1
     end
   end
 

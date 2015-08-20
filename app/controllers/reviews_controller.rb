@@ -5,12 +5,18 @@ class ReviewsController < ApplicationController
 
   def create
     @card = current_user.cards.find(review_params[:card_id])
-    if @card.review(review_params[:answer])
-      flash[:success] = "Right! Next review: #{@card.review_date.localtime}"
+    review = @card.review(review_params[:answer])
+
+    if review[:success]
+      flash[:success] = "Right! Original: #{@card.original_text}, " \
+                        "translated: #{@card.translated_text}. " \
+                        "Your answer: #{review_params[:answer]}. " \
+                        "Typos: #{review[:typos]}. " \
+                        "Next review: #{@card.review_date.localtime}"
     else
       flash[:danger] = "Wrong! Next review: #{@card.review_date.localtime}"
     end
-    redirect_to root_url
+    redirect_to new_review_path
   end
 
   protected
