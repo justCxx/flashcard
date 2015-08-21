@@ -16,4 +16,10 @@ class User < ActiveRecord::Base
   def cards_for_review
     default_deck ? default_deck.cards.for_review : cards.for_review
   end
+
+  def self.notify_review
+    User.includes(decks: :cards).each do |user|
+      NotificationsMailer.pending_cards(user).deliver_later
+    end
+  end
 end

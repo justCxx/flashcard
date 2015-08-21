@@ -1,6 +1,6 @@
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -14,6 +14,19 @@ module Flashcard
 
     config.paperclip_defaults = {
       storage: "filesystem"
+    }
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      authentication: :plain,
+      user_name: ENV["SMTP_USER"],
+      password: ENV["SMTP_PASSWORD"],
+      enable_starttls_auto: true
+    }
+    config.action_mailer.default_url_options = {
+      host: ENV["APP_HOST"]
     }
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
