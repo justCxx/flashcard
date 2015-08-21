@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
 
   def self.notify_review
-    User.all.each do |user|
+    User.includes(decks: :cards).each do |user|
       NotificationsMailer.pending_cards(user).deliver_later
     end
   end

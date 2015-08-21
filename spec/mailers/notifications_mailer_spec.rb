@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe NotificationsMailer do
+describe NotificationsMailer do
   let!(:user) { create(:user_with_cards, cards_count: 1) }
 
   before(:each) do
