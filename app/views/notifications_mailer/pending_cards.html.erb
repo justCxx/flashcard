@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.email %> </h1>
+    <p>
+      The following cards are expected review:
+      <% @cards.each do |card| %>
+        <p> <%= card.translated_text %> </p>
+      <% end %>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= ENV["APP_HOST"] %>
+    </p>
+  </body>
+</html>

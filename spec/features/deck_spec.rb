@@ -33,4 +33,10 @@ describe "Deck features" do
     click_button "Update Deck"
     expect(deck.user.decks.first.title).to eq "TestDeck"
   end
+
+  it "remove deck" do
+    visit decks_path
+    click_link "Удалить"
+    expect(page).to have_content("Колоды (0)")
+  end
 end
