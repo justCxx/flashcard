@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV["SMTP_USER"]
+  default from: "oh-my-flashcards"
   layout "mailer"
 end
