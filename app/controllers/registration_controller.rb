@@ -3,7 +3,6 @@ class RegistrationController < ApplicationController
 
   def new
     @user = User.new
-    @user.locale = I18n.locale
   end
 
   def create

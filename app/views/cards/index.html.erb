@@ -20,8 +20,8 @@
       <td><%= card.correct_answers %></td>
       <td><%= card.incorrect_answers %></td>
       <td><%= card.deck.title %></td>
-      <td><%= link_to (t :edit), edit_card_path(card) %></td>
-      <td><%= link_to (t :destroy), card_path(card), method: :delete %></td>
+      <td><%= link_to t(:edit), edit_card_path(card) %></td>
+      <td><%= link_to t(:destroy), card_path(card), method: :delete %></td>
     </tr>
   <% end %>
 </table>

@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   validates :locale, presence: true
   validates :password, length: { minimum: 6 }, if: :new_record?
 
+  before_validation :set_locale, if: :new_record?
+
   def cards
     Card.where(deck_id: decks)
   end
@@ -22,5 +24,11 @@ class User < ActiveRecord::Base
     User.includes(decks: :cards).each do |user|
       NotificationsMailer.pending_cards(user).deliver_later
     end
+  end
+
+  private
+
+  def set_locale
+    self.locale = I18n.default_locale
   end
 end
