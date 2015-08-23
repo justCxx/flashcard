@@ -39,6 +39,10 @@ gem "aws-sdk"
 gem "damerau-levenshtein"
 # Cron jobs
 gem "whenever", require: false
+# Parse the Accept-Language header
+gem "http_accept_language"
+# locale data
+gem "rails-i18n", "~> 4.0.4"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger cli
