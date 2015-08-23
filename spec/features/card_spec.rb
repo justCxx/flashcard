@@ -33,7 +33,7 @@ describe "Card features" do
 
     it "remove card" do
       visit cards_path(deck_id: deck.id)
-      first(:link, "Remove").click
+      first(:link, "Destroy").click
       expect(deck.cards.count).to be 0
     end
   end

@@ -1,10 +1,10 @@
-<h3>Колоды (<%= @decks.count %>)</h3>
+<h3><%= t :decks %> (<%= @decks.count %>)</h3>
 
 <table width="100%">
   <tr>
-    <th>Название</th>
-    <th>Карточек</th>
-    <th>Для просмотра</th>
+    <th><%= Deck.human_attribute_name(:title) %></th>
+    <th><%= t :cards %></th>
+    <th><%= t :for_review %></th>
   </tr>
 
   <% @decks.each do |deck| %>
@@ -12,8 +12,8 @@
       <td><%= link_to deck.title, deck_path(deck) %></td>
       <td><%= deck.cards.count %></td>
       <td><%= deck.cards.for_review.count %></td>
-      <td><%= link_to 'Редактировать', edit_deck_path(deck) %></td>
-      <td><%= link_to 'Удалить', deck_path(deck), method: :delete %></td>
+      <td><%= link_to (t :edit), edit_deck_path(deck) %></td>
+      <td><%= link_to (t :destroy), deck_path(deck), method: :delete %></td>
     </tr>
   <% end %>
 </table>

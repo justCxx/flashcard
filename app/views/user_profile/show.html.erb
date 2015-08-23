@@ -1,15 +1,16 @@
-<h3>User profile</h3>
+<h3><%= t :user_profile %></h3>
 
-<p>E-mail: <%= current_user.email %></p>
-<p>Decks: <%= current_user.decks.count %></p>
-<p>Default deck:
+<p><%= t :email %>: <%= current_user.email %></p>
+<p><%= t :decks %>: <%= current_user.decks.count %></p>
+<p><%= User.human_attribute_name(:default_deck) %>:
 <% if current_user.default_deck %>
   <%= current_user.default_deck.title %>
 <% else %>
-  no default deck
+  <%= t :no_default_deck %>
 <% end %>
+<p><%= t :locale %>: <%= current_user.locale %></p>
 </p>
 
 
-<%= link_to "Edit", edit_profile_path %> |
-<%= link_to "Destroy", profile_path, method: :delete %>
+<%= link_to (t :edit), edit_profile_path %> |
+<%= link_to (t :destroy), profile_path, method: :delete %>

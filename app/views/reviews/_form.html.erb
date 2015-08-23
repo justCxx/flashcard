@@ -4,6 +4,6 @@
     <%= image_tag card.image.url(:medium) %>
     <p><%= card.translated_text %></p>
   </div>
-  <%= f.input :answer %>
-  <%= f.button :submit, "Проверить" %>
+  <%= f.input :answer, label: (t :review_answer) %>
+  <%= f.button :submit, (t :review_check) %>
 <% end %>

@@ -1,14 +1,14 @@
-<h3>All cards</h3>
+<h3><%= t :cards %> (<%= @cards.count %>)</h3>
 
 <table width="100%">
   <tr>
-    <th>Original</th>
-    <th>Translated</th>
-    <th>Image</th>
-    <th>Review</th>
-    <th>Correct answers</th>
-    <th>Incorrect answers</th>
-    <th>Deck</th>
+    <th><%= Card.human_attribute_name(:original_text) %></th>
+    <th><%= Card.human_attribute_name(:translated_text) %></th>
+    <th><%= Card.human_attribute_name(:image) %></th>
+    <th><%= Card.human_attribute_name(:review_date) %></th>
+    <th><%= Card.human_attribute_name(:correct_answers) %></th>
+    <th><%= Card.human_attribute_name(:incorrect_answers) %></th>
+    <th><%= Deck.human_attribute_name(:title) %></th>
   </tr>
 
   <% @cards.each do |card| %>
@@ -20,8 +20,8 @@
       <td><%= card.correct_answers %></td>
       <td><%= card.incorrect_answers %></td>
       <td><%= card.deck.title %></td>
-      <td><%= link_to "Edit", edit_card_path(card) %></td>
-      <td><%= link_to "Remove", card_path(card), method: :delete %></td>
+      <td><%= link_to (t :edit), edit_card_path(card) %></td>
+      <td><%= link_to (t :destroy), card_path(card), method: :delete %></td>
     </tr>
   <% end %>
 </table>

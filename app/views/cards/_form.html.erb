@@ -14,9 +14,9 @@
     </div>
   <% end %>
 
-  <%= f.input :deck_id, collection: current_user.decks, label: "Select deck" %>
+  <%= f.input :deck_id, collection: current_user.decks, label: (t :select_deck) %>
 
-  <p><b>Or creare new:</b></p>
+  <p><b><%= t :create_deck %>:</b></p>
 
   <%= simple_fields_for Deck.new do |f_deck| %>
     <%= f_deck.input :title %>
