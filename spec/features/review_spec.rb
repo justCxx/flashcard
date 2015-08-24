@@ -22,19 +22,19 @@ describe "Review features" do
 
     it "input correct answer" do
       fill_in("Answer", with: "bueno")
-      click_on "Проверить"
+      click_on "Check"
       expect(page).to have_content "Right!"
     end
 
     it "input almost correct answer" do
       fill_in("Answer", with: "byeno")
-      click_on "Проверить"
+      click_on "Check"
       expect(page).to have_content "Typos: 1"
     end
 
     it "input wrong answer" do
       fill_in("Answer", with: "malo")
-      click_on "Проверить"
+      click_on "Check"
       expect(page).to have_content "Wrong!"
     end
   end

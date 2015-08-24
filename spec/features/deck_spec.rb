@@ -36,7 +36,7 @@ describe "Deck features" do
 
   it "remove deck" do
     visit decks_path
-    click_link "Удалить"
-    expect(page).to have_content("Колоды (0)")
+    click_link "Destroy"
+    expect(page).to have_content("Decks (0)")
   end
 end

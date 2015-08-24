@@ -53,7 +53,7 @@ describe "User session" do
 
     it "sees only their own decks" do
       visit decks_path
-      expect(page).to have_content("Колоды (10)")
+      expect(page).to have_content("Decks (10)")
     end
   end
 end

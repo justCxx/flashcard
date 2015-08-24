@@ -8,13 +8,15 @@ class ReviewsController < ApplicationController
     review = @card.review(review_params[:answer])
 
     if review[:success]
-      flash[:success] = "Right! Original: #{@card.original_text}, " \
-                        "translated: #{@card.translated_text}. " \
-                        "Your answer: #{review_params[:answer]}. " \
-                        "Typos: #{review[:typos]}. " \
-                        "Next review: #{@card.review_date.localtime}"
+      flash[:success] = t("review_success",
+                          original: @card.original_text,
+                          translated: @card.translated_text,
+                          user_answer: review_params[:answer],
+                          typos: review[:typos],
+                          next: @card.review_date.localtime
+                         )
     else
-      flash[:danger] = "Wrong! Next review: #{@card.review_date.localtime}"
+      flash[:danger] = "#{t('review_wrong', next_review: @card.review_date)}"
     end
     redirect_to new_review_path
   end

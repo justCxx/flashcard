@@ -20,4 +20,46 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  helpers:
+    submit:
+      user:
+        create: "Sign Up"
+
+  app_name: "Yet another flashcards"
+  app_descr: "The world's first user-friendly manager flashcards. Exactly."
+
+  login: "Login"
+  logout: "Logout"
+  signin: "Sign In"
+  signup: "Sign Up"
+  signed_as: "Signed as"
+  require_login: "First login to access this page!"
+
+  locale: "locale"
+
+  home: "Home"
+  decks: "Decks"
+  cards: "Cards"
+
+  add_deck: "Add deck"
+  add_card: "Add card"
+  select_deck: "Select deck"
+  create_deck: "Or create new"
+
+  edit: "Edit"
+  destroy: "Destroy"
+
+  review_answer: "Answer"
+  review_check: "Check"
+  review_wrong: "Wrong! Next review: %{next_review}"
+  review_success: >
+    Right! Original: %{original},
+    translated: %{translated}.
+    Your answer: %{user_answer}.
+    Typos: %{typos}.
+    Next review: %{next}
+
+  for_review: "For review"
+
+  user_profile: "User profile"
+  no_default_deck: "not set"

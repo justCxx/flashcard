@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :user do
     email "foo@bar.com"
     password "foobar"
+    locale "en"
 
     factory :user_with_decks do
       transient do

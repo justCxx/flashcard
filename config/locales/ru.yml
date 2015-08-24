@@ -1,0 +1,67 @@
+ru:
+  activerecord:
+    models:
+      card:
+        one: "Карточка"
+        others: "Карточки"
+      deck:
+        one: "Колода"
+        others: "Колоды"
+      user:
+        one:  "Пользователь"
+        others: "Пользователи"
+    attributes:
+      deck:
+        title: "Название"
+      card:
+        correct_answers: "Правильные ответы"
+        incorrect_answers: "Неправильные ответы"
+        image: "Изображение"
+        original_text: "Оригинал"
+        review_date: "Дата просмотра"
+        translated_text: "Перевод"
+      user:
+        email: "E-mail"
+        password: "Пароль"
+        default_deck: "Текущая колода"
+        locale: "Язык интерфейса"
+  helpers:
+    submit:
+      user:
+        create: "Зарегистрироваться"
+  app_name: "Еще один Флэшкарточкер"
+  app_descr: "Первый в мире удобный менеджер флэшкарточек. Именно так."
+
+  login: "Вход"
+  logout: "Выйти"
+  signin: "Войти"
+  signup: "Зарегистрироваться"
+  signed_as: "Вы вошли как"
+  require_login: "Для доступа к странице, необходимо авторизоваться"
+
+  locale: "Язык"
+
+  home: "Главная"
+  decks: "Колоды"
+  cards: "Карточки"
+
+  add_deck: "Добавить колоду"
+  add_card: "Добавить карточку"
+  select_deck: "Выберите колоду"
+  create_deck: "Или создайте новую"
+
+  edit: "Редактировать"
+  destroy: "Удалить"
+
+  review_answer: "Ответ"
+  review_check: "Проверить"
+  review_wrong: "Неверно! Следующий просмотр: %{next_review}"
+  review_success: >
+    Правильно! Оригинал: %{original}, перевод: %{translated}.
+    Ваш ответ: %{user_answer}. Ошибок: %{typos}.
+    Следующий просмотр: %{next}
+
+  for_review: "Для просмотра"
+
+  user_profile: "Профиль пользователя"
+  no_default_deck: "не установлена"

@@ -16,5 +16,6 @@
 
   <%= f.input :email, as: :string %>
   <%= f.input :password %>
+  <%= f.input :locale, collection: I18n.available_locales %>
   <%= f.button :submit %>
 <% end %>
