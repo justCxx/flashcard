@@ -37,8 +37,8 @@ module Flashcard
 
     # The default locale is :en and all translations from
     # config/locales/*.rb,yml are auto loaded.
-    locales_path = Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s
-    config.i18n.load_path += Dir[locales_path]
+    # locales_path = Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s
+    # config.i18n.load_path += Dir[locales_path]
 
     config.i18n.available_locales = [:en, :ru]
 
