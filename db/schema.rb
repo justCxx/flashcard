@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822114606) do
+ActiveRecord::Schema.define(version: 20150824141658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,15 +30,19 @@ ActiveRecord::Schema.define(version: 20150822114606) do
     t.text     "original_text"
     t.text     "translated_text"
     t.datetime "review_date"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "deck_id",                        null: false
+    t.integer  "deck_id",                          null: false
     t.integer  "correct_answers",    default: 0
     t.integer  "incorrect_answers",  default: 0
+    t.float    "e_factor",           default: 2.5
+    t.integer  "interval",           default: 0
+    t.integer  "quality",            default: 0
+    t.integer  "repetitions",        default: 0
   end
 
   add_index "cards", ["deck_id"], name: "index_cards_on_deck_id", using: :btree

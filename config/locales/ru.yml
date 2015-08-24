@@ -14,10 +14,9 @@ ru:
       deck:
         title: "Название"
       card:
-        correct_answers: "Правильные ответы"
-        incorrect_answers: "Неправильные ответы"
         image: "Изображение"
         original_text: "Оригинал"
+        repetitions: "Повторения"
         review_date: "Дата просмотра"
         translated_text: "Перевод"
       user:
@@ -56,6 +55,7 @@ ru:
   review_answer: "Ответ"
   review_check: "Проверить"
   review_wrong: "Неверно! Следующий просмотр: %{next_review}"
+  review_quality: "Оценка ответа"
   review_success: >
     Правильно! Оригинал: %{original}, перевод: %{translated}.
     Ваш ответ: %{user_answer}. Ошибок: %{typos}.

@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
 
   def create
     @card = current_user.cards.find(review_params[:card_id])
-    review = @card.review(review_params[:answer])
+    review = @card.review(review_params[:answer], review_params[:quality].to_i)
 
     if review[:success]
       flash[:success] = t("review_success",
@@ -24,6 +24,6 @@ class ReviewsController < ApplicationController
   protected
 
   def review_params
-    params.require(:review).permit(:card_id, :answer)
+    params.require(:review).permit(:card_id, :answer, :quality)
   end
 end

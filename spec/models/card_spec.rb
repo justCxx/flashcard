@@ -2,87 +2,75 @@ require "rails_helper"
 
 describe Card do
   context "initialize" do
-    let(:invalid) { build(:card, original_text: "foo", translated_text: "foo") }
+    context "defaults" do
+      let(:card) { create(:card) }
+      it { expect(card.e_factor).to be 2.5 }
+      it { expect(card.interval).to be 0 }
+      it { expect(card.quality).to be 0 }
+      it { expect(card.repetitions).to be 0 }
+    end
 
-    it "invalid card" do
-      expect(invalid).to be_invalid
+    context "invalid" do
+      let(:card) { build(:card, original_text: "foo", translated_text: "foo") }
+      it { expect(card).to be_invalid }
     end
   end
 
   context "check input" do
-    let(:card) { FactoryGirl.create(:card, original_text: "Bueno") }
+    let(:card) { create(:card, original_text: "Bueno") }
+
     it "right answer" do
-      expect(card.review("bueno")[:typos]).to be 0
+      expect(card.review("bueno", 0)[:typos]).to be 0
     end
 
     it "right answer case insensitive" do
-      expect(card.review("BuENo")[:typos]).to be 0
+      expect(card.review("BuENo", 0)[:typos]).to be 0
     end
 
     it "right answer with trailing whitespaces" do
-      expect(card.review("  bueno  ")[:typos]).to be 0
+      expect(card.review("  bueno  ", 0)[:typos]).to be 0
     end
 
     it "right answer with typos" do
-      expect(card.review("byeno")[:typos]).to be 1
+      expect(card.review("byeno", 0)[:typos]).to be 1
     end
 
     it "wrong answer" do
-      expect(card.review("malo")[:typos]).to be > 1
+      expect(card.review("malo", 0)[:typos]).to be > 1
     end
   end
 
-  describe "#handle_correct_answer" do
+  describe "#review" do
+    let(:time_now) { Time.parse("Aug 25 2015") }
+
     before(:each) do
-      @original_date = card.review_date
-      card.review(card.original_text)
+      DateTime.stub(:now).and_return(time_now)
+      card.review(card.original_text, 4)
     end
 
-    context "after the first right review" do
-      let(:card) { FactoryGirl.create(:card, correct_answers: 0) }
-      it { expect(card.review_date).to eq @original_date + 12.hour }
+    context "the first right review" do
+      let(:card) { create(:card) }
+      it { expect(card.review_date).to eq time_now + 1.day }
     end
 
-    context "after the second right review" do
-      let(:card) { FactoryGirl.create(:card, correct_answers: 1) }
-      it { expect(card.review_date).to eq @original_date + 3.day }
+    context "the second right review" do
+      let(:card) { create(:card, interval: 1, repetitions: 1) }
+      it { expect(card.review_date).to eq time_now + 6.day }
     end
 
-    context "after the third right review" do
-      let(:card) { FactoryGirl.create(:card, correct_answers: 2) }
-      it { expect(card.review_date).to eq @original_date + 1.week }
+    context "the third right review" do
+      let(:card) { create(:card, interval: 6, repetitions: 2) }
+      it { expect(card.review_date).to eq time_now + (2.5 * 6).day }
     end
 
-    context "after the fourth right review" do
-      let(:card) { FactoryGirl.create(:card, correct_answers: 3) }
-      it { expect(card.review_date).to eq @original_date + 2.week }
+    context "the fourth right review" do
+      let(:card) { create(:card, interval: 15, repetitions: 3) }
+      it { expect(card.review_date).to eq time_now + (2.5 * 15).ceil.day }
     end
 
-    context "after the fifth right review" do
-      let(:card) { FactoryGirl.create(:card, correct_answers: 4) }
-      it { expect(card.review_date).to eq @original_date + 1.month }
-    end
-  end
-
-  describe "#handle_incorrect_answer" do
-    before(:each) do
-      @original_date = card.review_date
-      card.review("#{card.original_text}foo")
-    end
-
-    context "after the first wrong review" do
-      let(:card) { FactoryGirl.create(:card, correct_answers: 3) }
-      it { expect(card.correct_answers).to eq 2 }
-    end
-
-    context "after the second wrong review" do
-      let(:card) { FactoryGirl.create(:card, correct_answers: 2) }
-      it { expect(card.correct_answers).to eq 1 }
-    end
-
-    context "after the third wrong review" do
-      let(:card) { FactoryGirl.create(:card, correct_answers: 1) }
-      it { expect(card.correct_answers).to eq 0 }
+    context "the fifth right review" do
+      let(:card) { create(:card, interval: 37, repetitions: 4) }
+      it { expect(card.review_date).to eq time_now + (2.5 * 37).ceil.day }
     end
   end
 end

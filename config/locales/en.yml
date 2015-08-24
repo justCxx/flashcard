@@ -52,6 +52,7 @@ en:
   review_answer: "Answer"
   review_check: "Check"
   review_wrong: "Wrong! Next review: %{next_review}"
+  review_quality: "Answer quality"
   review_success: >
     Right! Original: %{original},
     translated: %{translated}.
