@@ -1,6 +1,4 @@
 class Card < ActiveRecord::Base
-  MAX_CORRECT_ANSWERS = 5
-  MAX_INCORRECT_ANSWERS = 3
   MAX_LEVENSHTEIN_DISTANCE = 1
 
   belongs_to :deck
@@ -9,7 +7,7 @@ class Card < ActiveRecord::Base
   validate :words_different
   validates_associated :deck
 
-  before_validation :set_review_date, if: :new_record?
+  after_initialize :set_default_date, if: :new_record?
 
   has_attached_file :image, styles: { medium: "360x360", thumb: "100x100" },
                             default_url: "cards/missing/:style/missing.png"
@@ -22,66 +20,38 @@ class Card < ActiveRecord::Base
     cards.offset(rand(cards.count))
   end
 
-  def review(translated)
+  def review(translated, quality)
     typos = words_distanse(translated, original_text)
-
-    if typos <= MAX_LEVENSHTEIN_DISTANCE
-      handle_correct_answer
-    else
-      handle_incorrect_answer
-    end
-
-    { success: typos <= MAX_LEVENSHTEIN_DISTANCE, typos: typos }
+    success = typos <= MAX_LEVENSHTEIN_DISTANCE
+    update_review_date(success ? quality : 0)
+    { success: success, typos: typos }
   end
 
   protected
 
-  def handle_correct_answer
-    increment(:correct_answers) if correct_answers < MAX_CORRECT_ANSWERS
-    update_attributes(incorrect_answers: 0)
-    update_review_date
+  def update_review_date(quality)
+    repetition = SuperMemo2.repetition(e_factor, interval, quality, repetitions)
+    repetition[:review_date] = DateTime.now + repetition[:interval]
+    update_attributes(repetition)
   end
 
-  def handle_incorrect_answer
-    decrement(:correct_answers) if correct_answers > 0
-    increment(:incorrect_answers) if incorrect_answers < MAX_INCORRECT_ANSWERS
-    save
+  def words_distanse(word1, word2)
+    DamerauLevenshtein.distance(normalize(word1), normalize(word2))
   end
+
+  private
 
   def normalize(str)
     str.squish.mb_chars.downcase.to_s
   end
 
-  def set_review_date
+  def set_default_date
     self.review_date = DateTime.now
-  end
-
-  def update_review_date
-    case correct_answers
-    when 0
-      offset = 0
-    when 1
-      offset = 12.hour
-    when 2
-      offset = 3.day
-    when 3
-      offset = 1.week
-    when 4
-      offset = 2.week
-    else
-      offset = 1.month
-    end
-
-    update_attributes(review_date: review_date + offset)
   end
 
   def words_different
     if normalize(original_text) == (translated_text)
       errors.add(:original_text, "can't equal translated text")
     end
-  end
-
-  def words_distanse(word1, word2)
-    DamerauLevenshtein.distance(normalize(word1), normalize(word2))
   end
 end

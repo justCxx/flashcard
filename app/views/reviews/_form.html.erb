@@ -5,5 +5,6 @@
     <p><%= card.translated_text %></p>
   </div>
   <%= f.input :answer, label: (t :review_answer) %>
+  <%= f.input :quality, label: (t :review_quality), collection: 1..5 %>
   <%= f.button :submit, (t :review_check) %>
 <% end %>

@@ -6,8 +6,7 @@
     <th><%= Card.human_attribute_name(:translated_text) %></th>
     <th><%= Card.human_attribute_name(:image) %></th>
     <th><%= Card.human_attribute_name(:review_date) %></th>
-    <th><%= Card.human_attribute_name(:correct_answers) %></th>
-    <th><%= Card.human_attribute_name(:incorrect_answers) %></th>
+    <th><%= Card.human_attribute_name(:repetitions) %></th>
     <th><%= Deck.human_attribute_name(:title) %></th>
   </tr>
 
@@ -16,9 +15,8 @@
       <td><%= card.original_text %></td>
       <td><%= card.translated_text %></td>
       <td><%= image_tag card.image.url(:thumb) %></td>
-      <td><%= card.review_date.strftime("%d/%m/%Y %H:%M") %></td>
-      <td><%= card.correct_answers %></td>
-      <td><%= card.incorrect_answers %></td>
+      <td><%= card.review_date.localtime.strftime("%d/%m/%Y %H:%M") %></td>
+      <td><%= card.repetitions %></td>
       <td><%= card.deck.title %></td>
       <td><%= link_to t(:edit), edit_card_path(card) %></td>
       <td><%= link_to t(:destroy), card_path(card), method: :delete %></td>
