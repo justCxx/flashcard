@@ -43,6 +43,12 @@ gem "whenever", require: false
 gem "http_accept_language"
 # locale data
 gem "rails-i18n", "~> 4.0.4"
+# Exception tracking and logging
+gem "rollbar"
+# The New Relic Ruby agent
+gem "newrelic_rpm"
+
+gem "mandrill-api"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger cli
