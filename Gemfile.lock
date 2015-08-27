@@ -94,6 +94,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.0.8)
+    excon (0.45.4)
     execjs (2.6.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -148,6 +149,9 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     method_source (0.8.2)
     mime-types (2.6.1)
     mimemagic (0.3.0)
@@ -158,6 +162,7 @@ GEM
     multipart-post (2.0.0)
     nenv (0.2.0)
     netrc (0.10.3)
+    newrelic_rpm (3.13.0.299)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     notiffany (0.0.7)
@@ -227,6 +232,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rollbar (2.1.2)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
       rspec-expectations (~> 3.3.0)
@@ -327,12 +333,15 @@ DEPENDENCIES
   http_accept_language
   jbuilder (~> 2.0)
   jquery-rails
+  mandrill-api
+  newrelic_rpm
   nokogiri
   paperclip
   pg
   rails (= 4.2.3)
   rails-i18n (~> 4.0.4)
   rails_12factor
+  rollbar
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
